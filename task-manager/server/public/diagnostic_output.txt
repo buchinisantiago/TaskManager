@@ -1,0 +1,35 @@
+﻿=== Task Manager Database Test ===
+
+1. Testing database connection...
+Ô£ô Database connection successful
+
+2. Checking if task_manager database exists...
+Ô£ô Current database: task_manager
+
+3. Checking if usuarios table exists...
+Ô£ô usuarios table exists
+Ô£ù Default user (ID=1) does not exist
+  Run this SQL to fix: INSERT INTO usuarios (id, nombre, email, password_hash) VALUES (1, 'Usuario Default', 'default@taskmanager.local', 'no-auth');
+
+4. Checking if tareas table exists...
+Ô£ô tareas table exists
+  Columns:
+    - id (int(11))
+    - usuario_id (int(11))
+    - titulo (varchar(200))
+    - descripcion (text)
+    - fecha_limite (date)
+    - prioridad (enum('Alta','Media','Baja'))
+    - estado (enum('Pendiente','En progreso','Completada'))
+    - categoria (varchar(50))
+    - recordatorio_especial (tinyint(1))
+    - fecha_creacion (datetime)
+
+5. Testing task insertion...
+Ô£ù Error inserting task: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`task_manager`.`tareas`, CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE)
+  Error Code: 23000
+
+6. Counting existing tasks...
+Ô£ô Total tasks in database: 0
+
+=== Test Complete ===

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="32" fill="url(#bg)"/>
+  <!-- Clipboard body -->
+  <rect x="52" y="48" width="88" height="108" rx="8" fill="white" opacity="0.95"/>
+  <!-- Clipboard clip -->
+  <rect x="72" y="38" width="48" height="20" rx="6" fill="white"/>
+  <rect x="82" y="34" width="28" height="12" rx="6" fill="url(#bg)"/>
+  <!-- Checkmarks -->
+  <polyline points="68,88 78,98 92,78" fill="none" stroke="#667eea" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="100" y1="88" x2="128" y2="88" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <polyline points="68,112 78,122 92,102" fill="none" stroke="#764ba2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="100" y1="112" x2="128" y2="112" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <line x1="68" y1="136" x2="128" y2="136" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round"/>
+</svg>

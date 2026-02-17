@@ -1,0 +1,34 @@
+﻿=== Task Manager Database Test ===
+
+1. Testing database connection...
+Ô£ô Database connection successful
+
+2. Checking if task_manager database exists...
+Ô£ô Current database: task_manager
+
+3. Checking if usuarios table exists...
+Ô£ô usuarios table exists
+Ô£ô Default user exists: Usuario Default
+
+4. Checking if tareas table exists...
+Ô£ô tareas table exists
+  Columns:
+    - id (int(11))
+    - usuario_id (int(11))
+    - titulo (varchar(200))
+    - descripcion (text)
+    - fecha_limite (date)
+    - prioridad (enum('Alta','Media','Baja'))
+    - estado (enum('Pendiente','En progreso','Completada'))
+    - categoria (varchar(50))
+    - recordatorio_especial (tinyint(1))
+    - fecha_creacion (datetime)
+
+5. Testing task insertion...
+Ô£ô Task inserted successfully with ID: 12
+Ô£ô Test task cleaned up
+
+6. Counting existing tasks...
+Ô£ô Total tasks in database: 0
+
+=== Test Complete ===

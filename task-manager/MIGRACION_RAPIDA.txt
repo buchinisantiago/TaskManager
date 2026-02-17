@@ -1,0 +1,119 @@
+==============================================
+   MIGRACIÓN RÁPIDA - TASK MANAGER
+   Comandos en Orden para Nueva PC
+==============================================
+
+ANTES DE MIGRAR (PC ACTUAL):
+============================
+
+1. Exportar Base de Datos:
+   - Abrir: http://localhost/phpmyadmin
+   - Seleccionar: task_manager
+   - Click: Exportar → Rápido → SQL → Continuar
+   - Guardar archivo en: APP-Prueba\task-manager\server\
+
+2. Copiar carpeta completa:
+   C:\xampp\htdocs\APP-Prueba
+   
+   → A USB o Google Drive
+
+
+EN LA PC NUEVA:
+===============
+
+1. INSTALAR SOFTWARE:
+   - XAMPP: https://www.apachefriends.org/download.html
+   - Node.js: https://nodejs.org
+   - ngrok: https://ngrok.com/download
+
+2. RESTAURAR ARCHIVOS:
+   - Copiar APP-Prueba a: C:\xampp\htdocs\
+
+3. INICIAR XAMPP:
+   - Abrir XAMPP Control Panel
+   - Start: Apache
+   - Start: MySQL
+
+4. IMPORTAR BASE DE DATOS:
+   - Abrir: http://localhost/phpmyadmin
+   - Nueva → Nombre: task_manager → Crear
+   - Seleccionar: task_manager
+   - Importar → Archivo: task_manager_backup.sql → Continuar
+
+5. CONFIGURAR NGROK:
+
+PowerShell:
+-----------
+cd C:\ngrok
+ngrok config add-authtoken TU_TOKEN_AQUI
+ngrok http 80 --host-header=rewrite
+
+⚠️ COPIAR EL URL QUE APARECE
+   (ej: https://abc-123-xyz.ngrok-free.app)
+
+6. ACTUALIZAR GOOGLE APPS SCRIPT:
+
+   - Ir a: https://script.google.com
+   - Abrir proyecto: "Task Manager Email"
+   - LÍNEA 14: Cambiar URL por el nuevo de ngrok
+   - LÍNEA 72: Verificar que tenga:
+   
+     const response = UrlFetchApp.fetch(url, {
+         muteHttpExceptions: true,
+         headers: {
+             'ngrok-skip-browser-warning': 'true'
+         }
+     });
+   
+   - Guardar (Ctrl+S)
+
+7. PROBAR EMAIL:
+
+   - En Google Apps Script
+   - Función: testEmailNow
+   - Ejecutar
+   - Revisar Gmail
+
+8. INSTALAR FRONTEND:
+
+PowerShell:
+-----------
+cd C:\xampp\htdocs\APP-Prueba\task-manager\client
+npm install
+npm run dev
+
+   Abrir: http://localhost:5173
+
+
+VERIFICACIÓN FINAL:
+==================
+
+✓ Apache: VERDE
+✓ MySQL: VERDE  
+✓ ngrok: Corriendo
+✓ Email: Llegó correctamente
+✓ Frontend: http://localhost:5173 funcionando
+✓ Tareas: Aparecen en la app
+
+
+MANTENER CORRIENDO:
+==================
+
+Para que funcionen los emails:
+- PowerShell con ngrok (minimizado OK)
+- XAMPP Control Panel (Apache + MySQL)
+- PC encendida a las 11:30 AM
+
+
+CUANDO LO SUBAS AL SERVIDOR:
+============================
+
+Solo cambiar en Google Apps Script línea 14:
+API_URL: "https://tudominio.com/task-manager/server/public/api/daily-summary.php"
+
+¡Y listo! Ya no necesitarás ngrok ni PC encendida.
+
+
+==============================================
+Tiempo estimado: 30-35 minutos
+==============================================
