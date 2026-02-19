@@ -1,6 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [QSA,L]
+
+    # If it's an API request, route to index.php
+    RewriteRule ^api/.*$ index.php [QSA,L]
+
+    # If the file or directory exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Otherwise, route to index.html (SPA Fallback)
+    RewriteRule ^ index.html [L]
 </IfModule>

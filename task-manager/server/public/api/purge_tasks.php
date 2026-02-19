@@ -9,14 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$host = 'localhost';
-$db_name = 'task_manager';
-$username = 'root';
-$password = '';
+// Include the central database configuration
+include_once '../../config/db.php';
+
+$database = new Database();
+$conn = $database->getConnection();
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Connection is already established in $conn
+    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Already set in db.php
 
     // Get input data
     $data = json_decode(file_get_contents("php://input"));

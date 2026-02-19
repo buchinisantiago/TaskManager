@@ -38,7 +38,7 @@ export default defineConfig({
                 globPatterns: ['**/*.{js,css,html,svg,png,ico,woff,woff2}'],
                 runtimeCaching: [
                     {
-                        urlPattern: /\/APP-Prueba\/task-manager\/server\/public\/api\/.*/i,
+                        urlPattern: /\/api\/.*/i,
                         handler: 'NetworkFirst',
                         options: {
                             cacheName: 'api-cache',

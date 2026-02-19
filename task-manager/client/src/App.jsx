@@ -3,12 +3,18 @@ import React, { useState, useEffect } from 'react';
 // Helper to get the correct API URL regardless of how the app is accessed
 const getApiUrl = () => {
     const hostname = window.location.hostname;
-    // Use localhost directly for local access - always reliable on the same machine
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        return 'http://localhost/APP-Prueba/task-manager/server/public/api/tasks';
+
+    // Check if we are running in a local/LAN environment with XAMPP path structure
+    // This logic checks if the current URL path contains 'APP-Prueba'
+    if (window.location.pathname.includes('/APP-Prueba/') || hostname === 'localhost' && window.location.port !== '') {
+        // Local Dev (Vite on port 5173) or LAN access
+        // If we are on Vite (port 5173), we need absolute path to Apache (port 80).
+        // If we are on Apache (built), we can use absolute path too.
+        return `http://${hostname}/APP-Prueba/task-manager/server/public/api/tasks`;
     }
-    // For mobile or other devices, use the hostname they are accessing (which is the IP)
-    return `http://${hostname}/APP-Prueba/task-manager/server/public/api/tasks`;
+
+    // Production (Render) - App served at root, API at /api/tasks
+    return '/api/tasks';
 };
 
 const API_URL = getApiUrl();
