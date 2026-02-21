@@ -388,6 +388,11 @@ button:disabled {
   border-left-color: var(--color-background-dark);
 }
 
+.task-card.importance-Event {
+  border-left-color: #FF6D00;
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFFFFF 40%);
+}
+
 /* Task Checkbox */
 .task-checkbox {
   width: 20px;
@@ -526,6 +531,12 @@ button:disabled {
 .task-priority.priority-Low {
   background: var(--color-background-dark);
   color: var(--color-white);
+}
+
+.task-priority.priority-Event {
+  background: #FF6D00;
+  color: var(--color-white);
+  font-weight: 700;
 }
 
 /* Empty State */
@@ -747,6 +758,73 @@ textarea {
 .calendar-task.priority-Low {
   background-color: var(--color-background-dark);
   color: var(--color-white);
+}
+
+.calendar-task.priority-Event {
+  background: linear-gradient(135deg, #FF6D00, #FF9100);
+  color: var(--color-white);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(255, 109, 0, 0.4);
+  animation: eventGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes eventGlow {
+  from {
+    box-shadow: 0 2px 6px rgba(255, 109, 0, 0.3);
+  }
+
+  to {
+    box-shadow: 0 2px 10px rgba(255, 109, 0, 0.6);
+  }
+}
+
+/* Google Calendar link in calendar */
+.gcal-link {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin-left: 4px;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.gcal-link:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Event filter button */
+.event-filter {
+  border-color: #FF6D00 !important;
+}
+
+.event-filter.active {
+  background: #FF6D00 !important;
+  color: white !important;
+  border-color: #FF6D00 !important;
+  box-shadow: 0 4px 6px rgba(255, 109, 0, 0.4) !important;
+}
+
+/* Google Calendar button in task list */
+.task-gcal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FF6D00;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(255, 109, 0, 0.3);
+}
+
+.task-gcal-btn:hover {
+  background: #E65100;
+  transform: scale(1.15);
+  box-shadow: 0 4px 8px rgba(255, 109, 0, 0.5);
 }
 
 .calendar-task-status {

@@ -1,5 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
+// Generate Google Calendar URL for an event
+const getGoogleCalendarUrl = (title, date, notes) => {
+    if (!date) return null;
+    const dateFormatted = date.replace(/-/g, '');
+    // All-day event: use date/date+1 format
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + 1);
+    const nextDateFormatted = nextDate.toISOString().split('T')[0].replace(/-/g, '');
+    const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: title,
+        dates: `${dateFormatted}/${nextDateFormatted}`,
+        details: notes || '',
+    });
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
+};
+
+// Map API priority to frontend importance
+const mapPriorityToImportance = (prioridad) => {
+    if (prioridad === 'Alta') return 'High';
+    if (prioridad === 'Evento') return 'Event';
+    return 'Low';
+};
+
+// Map frontend importance to API priority
+const mapImportanceToPriority = (importance) => {
+    if (importance === 'High') return 'Alta';
+    if (importance === 'Event') return 'Evento';
+    return 'Baja';
+};
+
 // Helper to get the correct API URL regardless of how the app is accessed
 const getApiUrl = () => {
     const hostname = window.location.hostname;
@@ -89,7 +120,7 @@ function App() {
                 title: task.titulo,
                 notes: task.descripcion || '',
                 dueDate: task.fecha_limite || '',
-                importance: task.prioridad === 'Alta' ? 'High' : 'Low',
+                importance: mapPriorityToImportance(task.prioridad),
                 completed: task.estado === 'Completada',
                 status: task.estado, // Map status from backend
                 createdAt: task.fecha_creacion,
@@ -111,8 +142,7 @@ function App() {
         if (isEditing && currentTaskId) {
             // Update existing task
             try {
-                // Convert frontend importance 'High'/'Low' back to API 'Alta'/'Baja'
-                const apiPriority = newTask.importance === 'High' ? 'Alta' : 'Baja';
+                const apiPriority = mapImportanceToPriority(newTask.importance);
 
                 const response = await fetch(`${API_URL}/${currentTaskId}`, {
                     method: 'PUT',
@@ -136,7 +166,7 @@ function App() {
                         title: updated.titulo,
                         notes: updated.descripcion || '',
                         dueDate: updated.fecha_limite || '',
-                        importance: updated.prioridad === 'Alta' ? 'High' : 'Low',
+                        importance: mapPriorityToImportance(updated.prioridad),
                         responsible: updated.responsable || 'Cache',
                         completedAt: updated.fecha_completada,
                         createdAt: t.createdAt, // Keep original
@@ -160,7 +190,7 @@ function App() {
                         titulo: newTask.title,
                         descripcion: newTask.notes,
                         fecha_limite: newTask.dueDate,
-                        prioridad: newTask.importance === 'High' ? 'Alta' : 'Baja',
+                        prioridad: mapImportanceToPriority(newTask.importance),
                         estado: 'Pendiente'
                     })
                 });
@@ -173,7 +203,7 @@ function App() {
                     title: created.titulo,
                     notes: created.descripcion || '',
                     dueDate: created.fecha_limite || '',
-                    importance: created.prioridad === 'Alta' ? 'High' : 'Low',
+                    importance: mapPriorityToImportance(created.prioridad),
                     completed: created.estado === 'Completada',
                     status: created.estado, // Add explicit status tracking
                     createdAt: created.fecha_creacion,
@@ -411,6 +441,7 @@ function App() {
             const matchesPriority = priorityFilters.some(filter => {
                 if (filter === 'High') return t.importance === 'High';
                 if (filter === 'Low') return t.importance === 'Low';
+                if (filter === 'Event') return t.importance === 'Event';
                 return false;
             });
             if (!matchesPriority) return false;
@@ -485,6 +516,7 @@ function App() {
                                 <span className="filter-label">Importancia:</span>
                                 <button onClick={() => togglePriorityFilter('High')} className={priorityFilters.includes('High') ? 'active' : ''}>Alta</button>
                                 <button onClick={() => togglePriorityFilter('Low')} className={priorityFilters.includes('Low') ? 'active' : ''}>Baja</button>
+                                <button onClick={() => togglePriorityFilter('Event')} className={priorityFilters.includes('Event') ? 'active event-filter' : 'event-filter'}>🎉 Evento</button>
                             </div>
                         </div>
 
@@ -554,7 +586,7 @@ function App() {
                                             <div className="task-meta-info">
                                                 <div className="meta-row">
                                                     <span className={`task-priority priority-${task.importance}`}>
-                                                        {task.importance === 'High' ? 'Alta' : 'Baja'}
+                                                        {task.importance === 'High' ? 'Alta' : task.importance === 'Event' ? '🎉 Evento' : 'Baja'}
                                                     </span>
                                                     <span className="task-responsible" title="Responsable">👤 {task.responsible}</span>
                                                 </div>
@@ -570,6 +602,11 @@ function App() {
                                             </div>
                                         </div>
                                         <div className="task-actions">
+                                            {task.importance === 'Event' && task.dueDate && (
+                                                <a href={getGoogleCalendarUrl(task.title, task.dueDate, task.notes)} target="_blank" rel="noopener noreferrer" className="task-gcal-btn" title="Agregar a Google Calendar">
+                                                    📅
+                                                </a>
+                                            )}
                                             {task.status === 'Cancelada' && (
                                                 <button className="task-restore" onClick={() => restoreTask(task.id)} title="Descancelar / Restaurar">
                                                     ↩️
@@ -623,6 +660,7 @@ function App() {
                                     <select value={newTask.importance} onChange={e => setNewTask({ ...newTask, importance: e.target.value })}>
                                         <option value="Low">Baja Prioridad</option>
                                         <option value="High">Alta Prioridad</option>
+                                        <option value="Event">🎉 Evento</option>
                                     </select>
                                     <input
                                         type="text"
@@ -676,9 +714,14 @@ function App() {
                                     <strong>{day}</strong>
                                     {dayTasks.map(t => {
                                         const isOverdue = !t.completed && t.status !== 'Cancelada' && t.dueDate && getUrgencyClass(t.dueDate) === 'task-overdue';
+                                        const isEvent = t.importance === 'Event';
+                                        const gcalUrl = isEvent ? getGoogleCalendarUrl(t.title, t.dueDate, t.notes) : null;
                                         return (
                                             <div key={t.id} className={`calendar-task priority-${t.importance} ${t.completed ? 'completed' : ''} ${t.status === 'Cancelada' ? 'cancelled' : ''} ${isOverdue ? 'overdue' : ''}`}>
-                                                <span className="calendar-task-status">{t.completed ? '✅' : t.status === 'Cancelada' ? '🚫' : isOverdue && t.importance === 'High' ? '🔥' : '⏳'}</span> {t.title}
+                                                <span className="calendar-task-status">{isEvent ? '🎉' : t.completed ? '✅' : t.status === 'Cancelada' ? '🚫' : isOverdue && t.importance === 'High' ? '🔥' : '⏳'}</span> {t.title}
+                                                {isEvent && gcalUrl && (
+                                                    <a href={gcalUrl} target="_blank" rel="noopener noreferrer" className="gcal-link" title="Agregar a Google Calendar" onClick={(e) => e.stopPropagation()}>📅</a>
+                                                )}
                                             </div>
                                         );
                                     })}
