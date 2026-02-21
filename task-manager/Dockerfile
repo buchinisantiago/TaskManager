@@ -3,10 +3,9 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY client/package*.json ./
 RUN npm install
-RUN chmod +x node_modules/.bin/vite
 COPY client/ ./
-# Build the application
-RUN npm run build
+# Build the application (using npx to avoid permission issues on Linux)
+RUN npx vite build
 
 # Stage 2: PHP Application with Apache
 FROM php:8.2-apache
