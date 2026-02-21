@@ -1,0 +1,8 @@
+client/node_modules/
+client/dist/
+client/dev-dist/
+server/src/
+*.bat
+*.md
+*.txt
+.git
