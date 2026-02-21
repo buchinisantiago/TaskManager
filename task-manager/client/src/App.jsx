@@ -101,6 +101,7 @@ function App() {
     const [sortOrder, setSortOrder] = useState('asc'); // 'none', 'desc', 'asc'
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [expandedDay, setExpandedDay] = useState(null); // For mobile calendar tap-to-expand
 
     // Fetch tasks from API
     useEffect(() => {
@@ -693,8 +694,8 @@ function App() {
                         <button onClick={() => changeMonth(1)}>Next ▶</button>
                     </div>
                     <div className="calendar-days-header">
-                        {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
-                            <div key={day} className="calendar-day-name">{day}</div>
+                        {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((day, i) => (
+                            <div key={i} className="calendar-day-name">{day}</div>
                         ))}
                     </div>
                     <div className="calendar-grid">
@@ -710,21 +711,26 @@ function App() {
                             const isToday = day === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear();
 
                             return (
-                                <div key={day} className={`calendar-day ${isToday ? 'today' : ''}`}>
+                                <div key={day} className={`calendar-day ${isToday ? 'today' : ''} ${expandedDay === day ? 'expanded' : ''} ${dayTasks.length > 0 ? 'has-tasks' : ''}`} onClick={() => setExpandedDay(expandedDay === day ? null : day)}>
                                     <strong>{day}</strong>
-                                    {dayTasks.map(t => {
-                                        const isOverdue = !t.completed && t.status !== 'Cancelada' && t.dueDate && getUrgencyClass(t.dueDate) === 'task-overdue';
-                                        const isEvent = t.importance === 'Event';
-                                        const gcalUrl = isEvent ? getGoogleCalendarUrl(t.title, t.dueDate, t.notes) : null;
-                                        return (
-                                            <div key={t.id} className={`calendar-task priority-${t.importance} ${t.completed ? 'completed' : ''} ${t.status === 'Cancelada' ? 'cancelled' : ''} ${isOverdue ? 'overdue' : ''}`}>
-                                                <span className="calendar-task-status">{isEvent ? '🎉' : t.completed ? '✅' : t.status === 'Cancelada' ? '🚫' : isOverdue && t.importance === 'High' ? '🔥' : '⏳'}</span> {t.title}
-                                                {isEvent && gcalUrl && (
-                                                    <a href={gcalUrl} target="_blank" rel="noopener noreferrer" className="gcal-link" title="Agregar a Google Calendar" onClick={(e) => e.stopPropagation()}>📅</a>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
+                                    {dayTasks.length > 2 && expandedDay !== day && (
+                                        <span className="task-count-badge">{dayTasks.length}</span>
+                                    )}
+                                    <div className="calendar-tasks-container">
+                                        {dayTasks.map(t => {
+                                            const isOverdue = !t.completed && t.status !== 'Cancelada' && t.dueDate && getUrgencyClass(t.dueDate) === 'task-overdue';
+                                            const isEvent = t.importance === 'Event';
+                                            const gcalUrl = isEvent ? getGoogleCalendarUrl(t.title, t.dueDate, t.notes) : null;
+                                            return (
+                                                <div key={t.id} className={`calendar-task priority-${t.importance} ${t.completed ? 'completed' : ''} ${t.status === 'Cancelada' ? 'cancelled' : ''} ${isOverdue ? 'overdue' : ''}`}>
+                                                    <span className="calendar-task-status">{isEvent ? '🎉' : t.completed ? '✅' : t.status === 'Cancelada' ? '🚫' : isOverdue && t.importance === 'High' ? '🔥' : '⏳'}</span> {t.title}
+                                                    {isEvent && gcalUrl && (
+                                                        <a href={gcalUrl} target="_blank" rel="noopener noreferrer" className="gcal-link" title="Agregar a Google Calendar" onClick={(e) => e.stopPropagation()}>📅</a>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             );
                         })}
