@@ -28,6 +28,9 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Allow .htaccess overrides (needed for SPA routing and API rewrite)
 RUN sed -ri -e 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf
 
+# Prioritize index.html over index.php (serve React SPA, not PHP)
+RUN echo 'DirectoryIndex index.html index.php' >> /etc/apache2/apache2.conf
+
 # Render uses PORT env variable (default 10000), configure Apache to listen on it
 RUN sed -i 's/Listen 80/Listen ${PORT}/g' /etc/apache2/ports.conf
 RUN sed -i 's/:80/:${PORT}/g' /etc/apache2/sites-available/000-default.conf
@@ -40,6 +43,9 @@ COPY server/ ./server/
 
 # Copy built frontend assets from builder stage into server/public/
 COPY --from=build /app/dist/ ./server/public/
+
+# Debug: list what's in server/public to verify index.html exists
+RUN ls -la /var/www/html/server/public/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
