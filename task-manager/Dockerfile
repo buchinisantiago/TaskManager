@@ -4,8 +4,8 @@ WORKDIR /app
 COPY client/package*.json ./
 RUN npm install
 COPY client/ ./
-# Build the application (using npx to avoid permission issues on Linux)
-RUN npx vite build
+# Build using node directly (avoids permission issues with .bin/ symlinks on Linux)
+RUN node node_modules/vite/bin/vite.js build
 
 # Stage 2: PHP Application with Apache
 FROM php:8.2-apache
