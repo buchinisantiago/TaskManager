@@ -3,6 +3,7 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY client/package*.json ./
 RUN npm install
+RUN chmod +x node_modules/.bin/vite
 COPY client/ ./
 # Build the application
 RUN npm run build
