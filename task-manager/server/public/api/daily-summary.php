@@ -15,7 +15,10 @@ if (!isset($_GET['token']) || $_GET['token'] !== $SECRET_TOKEN) {
     exit;
 }
 
-include_once '../../config/db.php';
+// Set timezone for Argentina
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+include_once __DIR__ . '/../../config/db.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -27,9 +30,18 @@ if (!$db) {
 }
 
 try {
-    // Get today's date
-    $today = date('Y-m-d');
-    $tomorrow = date('Y-m-d', strtotime('+1 day'));
+    // Get date from parameter or use today
+    $baseDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+
+    // Validate date format
+    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $baseDate)) {
+        http_response_code(400);
+        echo json_encode(["error" => "Invalid date format. Use YYYY-MM-DD"]);
+        exit;
+    }
+
+    $today = $baseDate;
+    $tomorrow = date('Y-m-d', strtotime($today . ' +1 day'));
 
     // Get tasks for today
     $stmtToday = $db->prepare("

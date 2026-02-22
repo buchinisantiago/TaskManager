@@ -25,9 +25,9 @@ RUN sed -ri -e 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.c
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy server PHP files (config, src, etc.) OUTSIDE the document root
+# Copy server PHP files (config, api, etc.) OUTSIDE the document root for security
 COPY server/config/ ./server/config/
-COPY server/public/index.php ./server/public/index.php
+COPY server/public/ ./server/public/
 
 # Copy built React frontend INTO the Apache document root (default /var/www/html)
 # This makes index.html the default page
@@ -37,6 +37,9 @@ COPY --from=build /app/dist/ ./
 RUN echo 'DirectoryIndex index.html\n\
     <IfModule mod_rewrite.c>\n\
     RewriteEngine On\n\
+    # Route /api/daily-summary.php directly\n\
+    RewriteRule ^api/daily-summary.php$ /server/public/api/daily-summary.php [QSA,L]\n\
+    # Route other /api/* to index.php\n\
     RewriteRule ^api/(.*)$ /server/public/index.php [QSA,L]\n\
     RewriteCond %{REQUEST_FILENAME} !-f\n\
     RewriteCond %{REQUEST_FILENAME} !-d\n\

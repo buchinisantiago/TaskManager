@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Include the central database configuration
-include_once '../../config/db.php';
+include_once __DIR__ . '/../../config/db.php';
 
 $database = new Database();
 $conn = $database->getConnection();

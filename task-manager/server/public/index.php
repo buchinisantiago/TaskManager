@@ -28,6 +28,18 @@ if (preg_match('/\/api\/tasks\/(\d+)/', $request, $matches)) {
     $taskId = $matches[1];
 }
 
+// Route: /api/daily-summary.php
+if ($request === '/api/daily-summary.php' || $request === '/api/daily-summary') {
+    require_once __DIR__ . '/api/daily-summary.php';
+    exit;
+}
+
+// Route: /api/purge_tasks.php
+if ($request === '/api/purge_tasks.php' || $request === '/api/purge_tasks') {
+    require_once __DIR__ . '/api/purge_tasks.php';
+    exit;
+}
+
 // Route: /api/tasks
 if (strpos($request, '/api/tasks') !== false) {
 
