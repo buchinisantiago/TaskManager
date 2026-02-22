@@ -1008,23 +1008,28 @@ textarea {
   }
 
   .task-actions {
-    position: absolute;
-    right: 8px;
-    top: 8px;
+    position: static;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 2px;
+    justify-content: flex-end;
+    width: 100%;
+    padding-top: 0.25rem;
+    border-top: 1px solid #f0f0f0;
   }
 
   .task-card {
     position: relative;
-    padding-right: 2.5rem;
+    padding-right: 0.75rem;
   }
 
   .task-edit,
   .task-delete,
-  .task-restore {
+  .task-restore,
+  .task-gcal-btn {
     padding: 4px;
     font-size: 1rem;
+    flex-shrink: 0;
   }
 
   .task-checkbox {

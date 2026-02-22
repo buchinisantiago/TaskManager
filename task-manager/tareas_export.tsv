@@ -1,0 +1,132 @@
+﻿id	usuario_id	titulo	descripcion	fecha_limite	prioridad	estado	categoria	recordatorio_especial	fecha_creacion	responsable	fecha_completada
+15	1	cumpe ichi	17:00	2026-02-06	Alta	Completada	Otros	0	2026-02-04 18:13:23	Cache	2026-02-06 17:14:23
+16	1	Turno con Juanca 8:00 am 	En cullen Sala 5 urologia	2026-02-07	Alta	Completada	Otros	0	2026-02-05 16:15:09	Cache	2026-02-07 17:30:34
+17	1	Coordinar juntada con harry	Ir a tomar una cerveza	2026-02-09	Baja	Completada	Otros	0	2026-02-05 16:15:57	Cache	2026-02-10 20:53:38
+18	1	Coordinar Juntada con masche	Ir a tomar algo por ahi	2026-02-10	Alta	Completada	Otros	0	2026-02-05 16:16:30	Cache	2026-02-11 15:34:54
+19	1	Juntada con los chicos de Galvez	Coordinar que comprar para llevar del Ger
+	2026-02-13	Baja	Completada	Otros	0	2026-02-05 16:18:43	Cache	2026-02-16 13:50:18
+20	1	Turno odontologo	14:00 en lo de nacho	2026-02-27	Alta	Pendiente	Otros	0	2026-02-05 16:27:42	Cache	NULL
+24	1	Cena rami		2026-02-04	Baja	Completada	Otros	0	2026-02-05 18:43:34	Cache	2026-02-05 18:43:37
+25	1	coordinar con tubi y paragua a la tarde	Comida con tubi y paragua a ala tarde	2026-02-08	Baja	Completada	Otros	0	2026-02-06 03:07:26	Cache	2026-02-09 03:03:13
+26	1	comida con el dani		2026-02-08	Baja	Completada	Otros	0	2026-02-06 03:08:04	Cache	2026-02-07 17:30:28
+27	1	entrevista con intercruises	Deberia tener entrevista con Intercruises	2026-02-18	Baja	Pendiente	Otros	0	2026-02-06 03:10:10	Cache	NULL
+28	1	Llega mi negra :)		2026-02-11	Alta	Completada	Otros	0	2026-02-06 03:11:28	Cache	2026-02-11 15:34:08
+29	1	evaluar prestamo hipotecario para ver si conviene		2026-02-07	Baja	Completada	Otros	0	2026-02-06 03:14:53	Cache	2026-02-07 20:37:26
+30	1	dia de los enamorados con mi negra		2026-02-14	Alta	Completada	Otros	0	2026-02-06 15:30:34	Cache	2026-02-16 13:50:23
+31	1	Viene a limpiar la keli		2026-02-11	Baja	Completada	Otros	0	2026-02-06 17:13:57	Cache	2026-02-11 15:34:02
+32	1	agregar boton de Ordenar fecha 		2026-02-07	Baja	Completada	Otros	0	2026-02-06 17:15:32	Cache	2026-02-07 20:45:37
+33	1	agregar foto a CV app		2026-02-07	Baja	Completada	Otros	0	2026-02-06 17:16:36	Cache	2026-02-20 21:27:52
+34	1	Masterclass IA a las 14:00	Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.	2026-02-09	Baja	Completada	Otros	0	2026-02-07 17:12:29	Cache	2026-02-10 20:53:35
+35	1	Averiguar como hacer una APP de entradas para uso unico	Entradas para generar QR de uso Unico	2026-02-09	Baja	Completada	Otros	0	2026-02-08 23:53:46	Cache	2026-02-09 13:44:58
+36	1	Poner CHAT BOT en la pagina de freetourcph	Este chat que sea un asistente turistico, que siempre que pregunten cosas o historias de copenaghue las cuente, pero si pregunta acerca de toures o precios que ofrezca mis toures y/o que va a contactr a un humano para que responda esas preguntas	2026-02-19	Baja	Pendiente	Otros	0	2026-02-09 03:03:03	Cache	NULL
+37	1	Hacer cuenta de Intagram Business con IA	Hacer una cuenta con IA que sea AUTOMATICA, para genrar contenido y seguidores.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:14:46	Cache	NULL
+38	1	Crear cuenta instagram business	Ver que debo tener la vieja cuenta de time change, eliminarla	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:25:04	Cache	NULL
+39	1	Crear Google Sheet ?master?	Creá un Google Sheet con estas columnas:
+
+Columna	Uso
+Fecha	Día de publicación
+Lugar	Lugar de Copenhague
+Copy	Texto del post
+Hashtags	Hashtags
+Imagen	URL de la imagen
+CTA	Frase final
+Estado	Pendiente / Listo / Publicado
+
+???? Este Sheet va a ser tu panel de control.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:25:34	Cache	NULL
+40	1	Generar contenido INSTAGRAM con IA - Definir prompt fijo (MUY importante)	Actuá como community manager turístico especializado en Copenhague.
+
+Lugar: [LUGAR]
+
+Creá:
+- Copy de Instagram (máx 900 caracteres)
+- CTA suave para walking tours
+- 10 hashtags relevantes
+
+Idioma: español neutro
+Tono: storytelling, cercano, turístico	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:26:54	Cache	NULL
+41	1	Generar contenido en bloques	Elegí 10 lugares
+
+Generá 10 copies de una sola vez
+
+Pegalos en el Sheet
+
+???? Esto ahorra muchísimo tiempo y mantiene coherencia.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:27:26	Cache	NULL
+42	1	Definir fuente de imágenes para publicar en INTAGRAM	Elegí UNA:
+
+Fotos propias
+
+Banco libre (Unsplash / Pexels)
+
+Canva
+
+???? Consejo:
+Usá siempre el mismo estilo (colores, encuadre).	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:28:16	Cache	NULL
+43	1	Subir imagen y pegar URL - INSTAGRAM Project	Subí la imagen a:
+
+Drive
+
+o tu web
+
+Pegá el link en la columna Imagen	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:28:48	Cache	NULL
+44	1	Revisión humana rápida de los post de instagram	Antes de publicar:
+
+leer copy
+
+revisar CTA
+
+corregir modismos
+
+chequear link
+
+?? 30?60 segundos por post.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:29:48	Cache	NULL
+45	1	Marcar ?LISTO?	Cuando un post está ok:
+
+cambiá Estado ? LISTO
+
+???? Solo los ?LISTO? se publican.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:30:09	Cache	NULL
+46	1	Programar desde Meta Business Suite	Desde Meta:
+
+Abrís el post
+
+Pegás imagen (desde URL)
+
+Pegás copy + hashtags
+
+Programás fecha/hora
+
+?? Aunque no sea 100% automático, todo ya está preparado, sin pensar ni escribir.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:30:38	Cache	NULL
+47	1	Analizar semanalmente	1 vez por semana:
+
+mirá likes
+
+comentarios
+
+guardados
+
+clicks al link
+
+Anotá en el Sheet:
+
+qué funcionó
+
+qué no	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:30:59	Cache	NULL
+48	1	Optimizar continuamente mi pag de comunity manager	Cada semana:
+
+repetí los mejores formatos
+
+ajustá CTA
+
+mejorá hooks iniciales
+
+???? La IA aprende del estilo que vos corregís.	2026-02-22	Baja	Pendiente	Otros	0	2026-02-09 03:31:48	Cache	NULL
+49	1	En la app de tareas, CAMBIAR en la vista calendario, una vez que la tarea se cancelo, que se marque con una crucecita roja, y si se completo que se marque con un tick verde		2026-02-22	Baja	Completada	Otros	0	2026-02-09 03:34:03	Cache	2026-02-11 20:21:27
+50	1	Hacer APP de comunity manager - donde suba facil el contenido, pueda ver los cambios que la IA le hace, y pueda dejar todo listo para subir con Zaper o make		2026-02-28	Baja	Pendiente	Otros	0	2026-02-09 13:14:00	Cache	NULL
+51	1	Ir con la chechi a las 18:00 a buscar mesa	18:00hr coordinar con la chechi	2026-02-11	Baja	Completada	Otros	0	2026-02-09 22:28:11	Cache	2026-02-12 17:54:40
+52	1	Generar una app para automatizacion y generacion de redes sociales		2026-02-22	Baja	Pendiente	Otros	0	2026-02-11 15:27:08	Cache	NULL
+53	1	Generar una app de RRHH para Calendarios de HORARIOS de trabajo, hacer algo pensando que el Dani lo pueda usar en tivoli		2026-02-22	Baja	Pendiente	Otros	0	2026-02-11 15:28:19	Cache	NULL
+54	1	crear agentes en la app : CHATBOTS que creen tareas		2026-02-22	Baja	Pendiente	Otros	0	2026-02-11 15:29:34	Cache	NULL
+57	1	Cambiar en la APP de RRHH que cada dia deberia tener el horario disponible, 	ej, el martes de 12 a 16 y el miercoles de 16 a 18 por ejemplo	2026-02-23	Baja	Pendiente	Otros	0	2026-02-12 15:14:42	Cache	NULL
+58	1	pedirle a Ezequiel de futuro digital una copia de la app de posteos en IG y FB		2026-02-20	Baja	Pendiente	Otros	0	2026-02-13 02:24:42	Cache	NULL
+59	1	Turno con el PSICOLOGO en linea	Turno con Yani en linea	2026-02-20	Alta	Completada	Otros	0	2026-02-17 20:58:50	Cache	2026-02-20 21:33:02
+60	1	Poner Alarma para Psicologo manana		2026-02-20	Baja	Pendiente	Otros	0	2026-02-17 20:59:21	Cache	NULL
+61	1	Ir del EMI a ver el tema del deposito	7:00 AM	2026-02-18	Alta	Completada	Otros	0	2026-02-17 21:00:15	Cache	2026-02-19 02:09:22
