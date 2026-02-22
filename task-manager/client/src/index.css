@@ -946,33 +946,21 @@ textarea {
     text-align: center;
   }
 
-  /* Task Cards — vertical stacked layout for mobile */
+  /* Task Cards — compact mobile layout with actions on right */
   .task-card {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0.6rem 0.75rem;
+    position: relative;
+    flex-wrap: wrap;
+    padding: 0.5rem 3rem 0.5rem 0.75rem;
     gap: 0.4rem;
     border-radius: 10px;
     min-height: unset;
     overflow: hidden;
   }
 
-  /* Top row: checkbox + content side by side */
-  .task-card>.task-checkbox {
-    position: absolute;
-    top: 0.7rem;
-    left: 0.75rem;
-  }
-
-  .task-card {
-    position: relative;
-    padding-left: 2.5rem;
-  }
-
   .task-content {
     flex-direction: column;
-    gap: 0.4rem;
-    width: 100%;
+    gap: 0.3rem;
+    width: calc(100% - 30px);
   }
 
   .task-main-info {
@@ -1021,24 +1009,30 @@ textarea {
     padding: 1px 6px;
   }
 
+  /* Actions pinned to right side, stacked vertically */
   .task-actions {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px;
-    justify-content: flex-end;
-    width: 100%;
-    padding-top: 0.25rem;
-    border-top: 1px solid #f0f0f0;
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    width: auto;
   }
 
   .task-edit,
   .task-delete,
   .task-restore,
   .task-gcal-btn {
-    padding: 4px;
-    font-size: 1rem;
+    padding: 2px;
+    font-size: 0.85rem;
     flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .task-checkbox {
